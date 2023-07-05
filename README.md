@@ -15,7 +15,7 @@ According to the requirements of our assignment, our approach to solve the probl
 In this method, we solve the problem as a planning problem, assuming we know the model (i.e., the prob- abilities of doing each action from each state) and the corresponding rewards. Our goal is to find the best policy, by performing a policy improvement step after a series of policy evaluations. This entire process is named Policy Iteration. At first, we calculate the values for each state, based on Bellman equation (see Equation 1).
 
 <p align="right">
-  <img src="https://github.com/HadarPur/RU-RL/blob/main/Mid%20semeter%20project/images/eq1.png" alt="drawing" width="800"/>
+  <img src="https://github.com/HadarPur/RU-RL-Maze/blob/main/Mid%20semeter%20project/images/eq1.png" alt="drawing" width="800"/>
 </p>
 
 This process is repeated until the delta (δ), which is the maximum difference between a current value and an updated value of any state, is smaller than a pre-defined θ.
@@ -28,7 +28,7 @@ This on-policy method is based on generating large amount of “games”, starti
 This algorithm is an off-policy method, where the agent starts from the initial state and plays until it reaches the goal. It repeatedly chooses an action based on a certain policy, performs the step according to the stochastic environment, and reaches to a new state. Then, it updates the Q-values of the states based on the actions that maximize the Q-value of the next state, according to the formula seen in Equation 2.
 
 <p align="right">
-  <img src="https://github.com/HadarPur/RU-RL/blob/main/Mid%20semeter%20project/images/eq2.png" alt="drawing" width="800"/>
+  <img src="https://github.com/HadarPur/RU-RL-Maze/blob/main/Mid%20semeter%20project/images/eq2.png" alt="drawing" width="800"/>
 </p>
 
 We used the basic form of Q-learning to solve the 15x15 maze. We extended the algorithm to also perform ε-decay when solving the 25x25 maze, as it did not converged within the maximum amount of episodes (i.e., 500 episodes).
@@ -37,7 +37,7 @@ We used the basic form of Q-learning to solve the 15x15 maze. We extended the al
 This algorithm is an on-policy method, which has the same principal as Q-Learning. The main difference between the two algorithms is that SARSA updates the Q-values based on the Q-value of the next state and action, according to the current policy, using the formula shown in Equation 3.
 
 <p align="right">
-  <img src="https://github.com/HadarPur/RU-RL/blob/main/Mid%20semeter%20project/images/eq3.png" alt="drawing" width="800"/>
+  <img src="https://github.com/HadarPur/RU-RL-Maze/blob/main/Mid%20semeter%20project/images/eq3.png" alt="drawing" width="800"/>
 </p>
 
 We used this method to solve the 15x15 maze.
@@ -79,26 +79,26 @@ As before, we limit the agent to a maximum of 5000 steps per episode. To prevent
 We examined the Policy Iteration algorithm using 3 different discount factors (γ), the first experiment with γ = 0.3, the second experiment with γ = 0.5, and the first experiment with γ = 1. All experiments were using θ = 0.0001. All three experiments ended after two iterations of policy iteration and reached convergence. We noticed that larger values of γ lead to higher state values, for each state. Using larger γ values lead to another notable outcome which is much more distinctive difference in state values. This difference can be seen in Figures 1, 2 and 3, which demonstrates, using colors, the actual values of each state, where darker cells (states) has values closer to 0 and brighter cells has the largest values (ranging from 0.56 to 1.83 in our case, depending on the experiment). We also noticed that the agent of the first experiment (γ = 0.3) took much more steps until reaching the goal, and looked less “confident” overall.
 
 <p align="center">
-  <img src="https://github.com/HadarPur/RU-RL/blob/main/Mid%20semeter%20project/images/fig123.png" alt="drawing" width="800"/>
+  <img src="https://github.com/HadarPur/RU-RL-Maze/blob/main/Mid%20semeter%20project/images/fig123.png" alt="drawing" width="800"/>
 </p>
 
 ### Monte Carlo
 In the case of Monte Carlo algorithm, we have a few parameters to explore: the discount factor, the number of episodes, and ε. We began our exploration in the first experiment, using ε = 0.1, γ = 0.9, and let the agent “play” for 100 episodes. In Figure 4, we can see that the total cumulative reward of each episode was very low during the entire learning process, along with a large amount of steps, meaning that the agent did not learn the maze properly. The average number of steps was 4967, and the average reward was -2.197. The relevant video can visualize that despite its struggles, the agent was able to successfully solved the maze. However, the agent did had some difficulties at certain cells, from which it was probably “rescued” by the stochastic actions.
 
 <p align="center">
-  <img src="https://github.com/HadarPur/RU-RL/blob/main/Mid%20semeter%20project/images/fig4.png" alt="drawing" width="800"/>
+  <img src="https://github.com/HadarPur/RU-RL-Maze/blob/main/Mid%20semeter%20project/images/fig4.png" alt="drawing" width="800"/>
 </p>
 
 In experiment 2-3, we used ε = 0.1, γ = 0.95, and let the agents run for 100 and 300 episodes respectively. For both experiments, the average number of steps and the average reward showed improvement comparing to the first experiment, but the learning process still was not stable enough. In experiment 4, we used ε = 0.2, γ = 0.95, and 300 episodes of learning. As we can see in Figure 5, the learning process improved, the average number of steps decreased to 442, and the average reward increased to 0.743.
 
 <p align="center">
-  <img src="https://github.com/HadarPur/RU-RL/blob/main/Mid%20semeter%20project/images/fig5.png" alt="drawing" width="800"/>
+  <img src="https://github.com/HadarPur/RU-RL-Maze/blob/main/Mid%20semeter%20project/images/fig5.png" alt="drawing" width="800"/>
 </p>
 
 Although experiment 4 did reached a stable solution, in experiments 5-6 we increased the number of episodes of learning to 500, and explored its effect with γ = 0.95 and γ = 0.99 respectively, looking for an additional improvement. In experiments 6 we saw a minor improvement in the average number of steps and the average reward, as seen in Figure 6. Also, we can see that the learning process becomes relatively stable after only 100 episodes.
 
 <p align="center">
-  <img src="https://github.com/HadarPur/RU-RL/blob/main/Mid%20semeter%20project/images/fig6.png" alt="drawing" width="800"/>
+  <img src="https://github.com/HadarPur/RU-RL-Maze/blob/main/Mid%20semeter%20project/images/fig6.png" alt="drawing" width="800"/>
 </p>
 
 We noticed that starting from experiment 3, where the number of episodes is larger then 100, the algorithm becomes stable enough, and manages to solve the maze even halfway through the learning process. We assume, according to the graphs, that after 100 episodes the agent collects enough information to successfully solve the maze, and it has a descent amount of episodes to apply what it learned and try to improve its strategy.
@@ -107,69 +107,69 @@ We noticed that starting from experiment 3, where the number of episodes is larg
 In the case of Q-Learning algorithm, we have the same 3 parameters as Monte Carlo, along with another parameter – α – which is also referred to as the learning rate. We performed 6 experiments using different values for each parameters. We started with the following values in experiment 1: ε = 0.1, γ = 0.9, α = 0.2, and 100 episodes. Figure 7 presents the learning process of experiment 1, which was decent but not stable enough. Overall, it produced an average of 460 steps and an average reward of 0.795. The relevant videos can verify that the agent could not solve the maze at the middle of the learning process, and hardly succeeds to solve it at the end.
 
 <p align="center">
-  <img src="https://github.com/HadarPur/RU-RL/blob/main/Mid%20semeter%20project/images/fig7.png" alt="drawing" width="800"/>
+  <img src="https://github.com/HadarPur/RU-RL-Maze/blob/main/Mid%20semeter%20project/images/fig7.png" alt="drawing" width="800"/>
 </p>
 
 In experiments 2-3 we let the agent run for 200 episodes, and set γ = 0.95, α = 0.2, and ε = 0.1 and ε = 0.01 respectively. Both experiments showed better average results than the first experiment, however, not significantly. Experiment 4 was able to produce great results, which can be seen in Figure 8, as we let the agent to run for 300 episodes, with the same parameters as experiment 3. The average number of steps dropped to 185 and the average reward increased to 0.917.
 
 <p align="center">
-  <img src="https://github.com/HadarPur/RU-RL/blob/main/Mid%20semeter%20project/images/fig8.png" alt="drawing" width="800"/>
+  <img src="https://github.com/HadarPur/RU-RL-Maze/blob/main/Mid%20semeter%20project/images/fig8.png" alt="drawing" width="800"/>
 </p>
 
 Although we were satisfied with those result of experiment 4, we wanted to explore the effects of γ and α. In experiment 5, we set γ = 0.99 and α = 0.1 to be in experiment 5. This experiment provided worse result comparing to the previous one, as it took the agent more episodes to become stable and it could not solve the maze in the middle of the learning process. We wanted to see if this was due to insufficient training, so in experiment 6 we increased the number of episodes to 500 (with other parameters the same as experiment 5), and got similar results as the ones observed in experiment 4, which can be reflected in Figure 9 that has similar characteristics to Figure 8.
 
 <p align="center">
-  <img src="https://github.com/HadarPur/RU-RL/blob/main/Mid%20semeter%20project/images/fig9.png" alt="drawing" width="800"/>
+  <img src="https://github.com/HadarPur/RU-RL-Maze/blob/main/Mid%20semeter%20project/images/fig9.png" alt="drawing" width="800"/>
 </p>
 
 ### SARSA
 Due to the similarity between SARSA and Q-Learning, SARSA uses the same parameters as we mentioned in Section 3.3. We used similar, but not identical, values for the SARSA experiments and performed the same amount of experiments. As we could expect, changing parameters had the same influence at the results which were relatively similar. Starting with ε = 0.2, γ = 0.9, α = 0.2, and 100 episodes, experiment 1 produces an unstable learning process, as presented in Figure 10. The agent could not solve the maze neither at on the middle of the process nor at the end, although it does improves along the episodes.
 
 <p align="center">
-  <img src="https://github.com/HadarPur/RU-RL/blob/main/Mid%20semeter%20project/images/fig10.png" alt="drawing" width="800"/>
+  <img src="https://github.com/HadarPur/RU-RL-Maze/blob/main/Mid%20semeter%20project/images/fig10.png" alt="drawing" width="800"/>
 </p>
 
 In experiments 2-3 we stayed with the same parameters values but increased the number of episodes twice, to 200 and 300 respectively. Those changes showed us that higher number of episodes provides better results for the same parameters, regarding the average steps number and average rewards. In experiment 3, the agent even managed to solve the maze in the middle of the learning process although it experienced some struggles. For the next experiment we decreased both α and ε to 0.1 to test their influence, and the results are presented in Figure 11. These changes produced worse result, as it provided an average steps number of 332 (comparing to 208 in experiment 3), and an average reward of 0.852 (comparing to 0.907). For both experiments 3 and 4, the agent managed to solve the maze in the middle of the process, but it seems like it managed to do so only due to the stochastic model.
 
 <p align="center">
-  <img src="https://github.com/HadarPur/RU-RL/blob/main/Mid%20semeter%20project/images/fig11.png" alt="drawing" width="800"/>
+  <img src="https://github.com/HadarPur/RU-RL-Maze/blob/main/Mid%20semeter%20project/images/fig11.png" alt="drawing" width="800"/>
 </p>
 
 In experiment 5 we only changed the γ comparing to experiment 4, and set it to be 0.99. There was an improvement comparing to experiment 4, but it was not significant, as experiment 3 still provided better results, with higher ε and α. The final experiment was the most successful one, which used the same parameters as experiment 5 along with an increase of the episodes number to 500. In Figure 12 we can see that the learning process of the agent becomes stable much earlier in the process, and we noticed that it can solve the maze in the middle of the process without relying on the stochastic model. The average steps number was 195 and the average reward was 0.913.
 
 <p align="center">
-  <img src="https://github.com/HadarPur/RU-RL/blob/main/Mid%20semeter%20project/images/fig12.png" alt="drawing" width="800"/>
+  <img src="https://github.com/HadarPur/RU-RL-Maze/blob/main/Mid%20semeter%20project/images/fig12.png" alt="drawing" width="800"/>
 </p>
 
 ### Q-Learning 25X25
 We chose to solve the 25x25 maze with the Q-Learning algorithm. We started the first experiments with the basic algorithm and provided it the following values: ε = 0.1, γ = 0.9, α = 0.1, and 100 episodes. Not only did the learning process was not stable but it also did not present any improvement in terms of steps number and rewards, as we can see in Figure 13.
 
 <p align="center">
-  <img src="https://github.com/HadarPur/RU-RL/blob/main/Mid%20semeter%20project/images/fig13.png" alt="drawing" width="800"/>
+  <img src="https://github.com/HadarPur/RU-RL-Maze/blob/main/Mid%20semeter%20project/images/fig13.png" alt="drawing" width="800"/>
 </p>
 
 In the next experiment, we kept using the basic algorithm and set ε = 0.5, to enable more exploration. We indeed saw a minor improvement, however, the agent still couldn’t solve the maze at all. In experiment 3, we implemented ε-decay method, to enable much more exploration at the beginning, and reducing it as long as the agent completes more episodes. Starting with ε = 0.5 and decaying to 0.01, the agent presented results that were similar to the results of experiment 2, which are presented in Figure 14.
 
 <p align="center">
-  <img src="https://github.com/HadarPur/RU-RL/blob/main/Mid%20semeter%20project/images/fig14.png" alt="drawing" width="800"/>
+  <img src="https://github.com/HadarPur/RU-RL-Maze/blob/main/Mid%20semeter%20project/images/fig14.png" alt="drawing" width="800"/>
 </p>
 
 Experiment 4 extended the setting of experiment 3, with γ = 0.95, α = 0.2 and changing the rewards in to chosen cells. We wanted the agent to avoid the left part of the maze, to limit the amount of ways to the goal the agent will need to explore. Therefore, we set the reward of cell (2, 6) to be -5. Cell (5, 7) got a “positive” reward of 0.1. Although the learning process appears to be more stable, the agent still could not solve the maze. In experiment 5 we changed the location of the strategic cells and the rewards values, compared to experiment 4. We set the “negative” cell to be (2, 5) with a reward of -10, and the “positive” cell moved to (4, 4) with a reward of 0. Figure 15 presents the learning process of experiment 5, that appears stable with an average steps number of 755, and average reward of -2.652. This experiment was the first experiment in which the agent managed to solve the maze at the end of the process.
 
 <p align="center">
-  <img src="https://github.com/HadarPur/RU-RL/blob/main/Mid%20semeter%20project/images/fig15.png" alt="drawing" width="800"/>
+  <img src="https://github.com/HadarPur/RU-RL-Maze/blob/main/Mid%20semeter%20project/images/fig15.png" alt="drawing" width="800"/>
 </p>
 
 We then realized that the cell with the “positive” reward needs to be located closer to the goal, and guide the agent to use the preferred path, which is virtually goes through the “diagonal” of the maze that connects the start cell and the goal cell. We chose cell (16, 17) with a reward of 0 for the “positive” cell and did not change the “negative” cell. The results presented in Figure 16 shows a better learning process that converges earlier, But at this point the agent still managed to solve the maze only at the end of the learning process.
 
 <p align="center">
-  <img src="https://github.com/HadarPur/RU-RL/blob/main/Mid%20semeter%20project/images/fig16.png" alt="drawing" width="800"/>
+  <img src="https://github.com/HadarPur/RU-RL-Maze/blob/main/Mid%20semeter%20project/images/fig16.png" alt="drawing" width="800"/>
 </p>
 
 Finally, we increased the number of episodes to 500 in experiment 7, to enable the agent to apply its knowledge. This, as expected, improved the learning process as shown in Figure 17. Also, the final video of experiment 7 emphasizes the agent’s certainty in its knowledge. This experiment was also the first time that the agent managed to solve the maze, with some struggles, in the middle of the process, which is reasonable since it is equal to 250 episodes. In addition, the average reward was almost twice as better as the one provided by experiment 6.
 
 <p align="center">
-  <img src="https://github.com/HadarPur/RU-RL/blob/main/Mid%20semeter%20project/images/fig17.png" alt="drawing" width="800"/>
+  <img src="https://github.com/HadarPur/RU-RL-Maze/blob/main/Mid%20semeter%20project/images/fig17.png" alt="drawing" width="800"/>
 </p>
 
 ## Discussion
